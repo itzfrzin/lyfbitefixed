@@ -41,7 +41,8 @@ async function connectMongo() {
     console.log("   📋 Total users in collection:", count);
 
   } catch (err) {
-    console.warn("⚠️  MongoDB not available — falling back to in-memory store.");
+    console.error("❌ MONGODB CONNECTION FAILED:", err.message);
+    console.warn("⚠️  MongoDB fallback active — using in-memory store.");
   }
 }
 
@@ -214,6 +215,22 @@ app.post("/api/admin/users", async (req, res) => {
       isAdmin: isAdmin(u.email), createdAt: u.createdAt || null
     }));
     return res.json({ users });
+  }
+});
+app.post("/api/contact", async (req, res) => {
+  const { name, email, message } = req.body;
+  if (!name || !email || !message) return res.status(400).json({ message: "All fields are required." });
+  const entry = { name, email, message, createdAt: new Date() };
+  if (contactCollection) {
+    try {
+      await contactCollection.insertOne(entry);
+      res.json({ success: true });
+    } catch (e) {
+      res.status(500).json({ message: "Server error." });
+    }
+  } else {
+    memContact.push(entry);
+    res.json({ success: true });
   }
 });
 
