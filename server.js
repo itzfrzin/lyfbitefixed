@@ -397,6 +397,11 @@ app.get("/api/meals", async (req, res) => {
 // Serve the static site
 app.use(express.static(__dirname));
 
+// Explicit path for the home page (Fixes "Cannot GET /" on some hosts)
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
 // POST endpoint for AI Meal Plan generation
 app.post("/api/generate-meal-plan", async (req, res) => {
   const { profile, health, lifestyle, mealCount: rawMealCount } = req.body;
