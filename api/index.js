@@ -12,6 +12,7 @@ let db = null;
 let usersCollection = null;
 let contactCollection = null;
 const memContact = [];
+let connectionPromise = null;
 
 function simpleHash(str) {
   let h = 0;
@@ -20,34 +21,35 @@ function simpleHash(str) {
 }
 
 async function connectMongo() {
-  console.log("⏳ Attempting to connect to MongoDB...");
-  try {
-    const { MongoClient } = await import("mongodb");
-    const uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
-    const client = new MongoClient(uri, {
-      serverSelectionTimeoutMS: 5000,
-      connectTimeoutMS: 5000,
-    });
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
+  if (connectionPromise) return connectionPromise;
+  
+  connectionPromise = (async () => {
+    console.log("⏳ Initializing MongoDB Connection...");
+    try {
+      const { MongoClient } = await import("mongodb");
+      const uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
+      const client = new MongoClient(uri, {
+        serverSelectionTimeoutMS: 5000,
+        connectTimeoutMS: 10000,
+      });
+      await client.connect();
+      
+      db = client.db("lyfbite");
+      usersCollection = db.collection("users");
+      await usersCollection.createIndex({ email: 1 }, { unique: true });
+      contactCollection = db.collection("contact_messages");
 
-    // MongoDB auto-creates the DB and collection on first write
-    db = client.db("lyfbite");
-    usersCollection = db.collection("users");
-    await usersCollection.createIndex({ email: 1 }, { unique: true });
-
-    contactCollection = db.collection("contact_messages");
-
-    console.log("✅ Connected to MongoDB — database: lyfbite  |  collection: users & contact_messages");
-    await seedAdminAccount();
-
-    const count = await usersCollection.countDocuments();
-    console.log("   📋 Total users in collection:", count);
-
-  } catch (err) {
-    console.error("❌ MONGODB CONNECTION FAILED:", err.message);
-    console.warn("⚠️  MongoDB fallback active — using in-memory store.");
-  }
+      await seedAdminAccount();
+      console.log("✅ SUCCESS: Connected to MongoDB Atlas.");
+      return true;
+    } catch (err) {
+      console.error("❌ MONGODB CONNECTION FAILED:", err.message);
+      console.warn("⚠️  Falling back to in-memory store for this session.");
+      return false;
+    }
+  })();
+  
+  return connectionPromise;
 }
 
 async function seedAdminAccount() {
@@ -67,6 +69,7 @@ async function seedAdminAccount() {
   });
 }
 
+// Initial trigger for connection
 connectMongo();
 
 // Simple in-memory fallback store (when MongoDB is offline)
@@ -99,6 +102,7 @@ app.use(express.json());
 // ── AUTH ROUTES ───────────────────────────────────────────────────────────────
 
 app.post("/api/auth/signup", async (req, res) => {
+  await connectMongo(); // Ensure connection is attempted before proceeding
   const { firstName, lastName, email, password } = req.body;
   if (!firstName || !lastName || !email || !password)
     return res.status(400).json({ message: "All fields are required." });
@@ -130,6 +134,7 @@ app.post("/api/auth/signup", async (req, res) => {
 });
 
 app.post("/api/auth/login", async (req, res) => {
+  await connectMongo(); // Ensure connection is attempted before proceeding
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).json({ message: "Email and password are required." });
   const hashedPw = simpleHash(password);
