@@ -217,6 +217,17 @@ app.post("/api/admin/users", async (req, res) => {
   }
 });
 
+app.post("/api/admin/messages", async (req, res) => {
+  const { email } = req.body;
+  if (!isAdmin(email)) return res.status(403).json({ message: "Forbidden." });
+  if (contactCollection) {
+    const messages = await contactCollection.find({}).sort({ createdAt: -1 }).toArray();
+    return res.json({ messages });
+  } else {
+    return res.json({ messages: [...memContact].reverse() });
+  }
+});
+
 app.post("/api/admin/grant-yearly", async (req, res) => {
   const { adminEmail, email } = req.body;
   if (!isAdmin(adminEmail)) return res.status(403).json({ message: "Forbidden." });
