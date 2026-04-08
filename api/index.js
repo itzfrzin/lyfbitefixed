@@ -343,7 +343,7 @@ JSON format:
 }`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-3.1-flash-lite",
       contents: prompt
     });
 
@@ -465,7 +465,7 @@ Return ONLY valid raw JSON (no markdown, no code fences). Format:
 {"name":"Recipe Name","image":"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600","instructions":"Brief 1-2 sentence recipe overview.","prepTime":20,"calories":450}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3-flash-preview",
+      model: "gemini-3.1-flash-lite",
       contents: prompt
     });
 
