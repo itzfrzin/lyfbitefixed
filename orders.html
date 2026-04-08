@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .order-card {
+      background: var(--ds-surface);
+      border: 1px solid var(--ds-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--ds-border);
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .order-id { font-weight: 700; color: var(--ds-primary); }
+    .order-date { color: var(--ds-text-secondary); font-size: 0.9rem; }
+    .order-status {
+      background: rgba(104, 121, 72, 0.1);
+      color: var(--ds-primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .order-items { margin-bottom: 1.5rem; }
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+    }
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--ds-border);
+    }
+    .order-total { font-size: 1.25rem; font-weight: 700; }
+    .contact-driver {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--ds-primary);
+      color: white;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    .contact-driver:hover { opacity: 0.9; }
+    .empty-orders {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--ds-surface);
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--ds-border);
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html" class="active">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content page-narrow">
+    <header class="page-header">
+      <p class="page-eyebrow">History</p>
+      <h1>Your Orders</h1>
+      <p class="page-lead">Track your recent meal subscriptions and upcoming deliveries.</p>
+    </header>
+
+    <div id="orders-container">
+      <!-- Injected by orders.js -->
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Bite into a healthier life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script src="orders.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

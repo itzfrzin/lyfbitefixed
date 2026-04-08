@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Billing &amp; checkout — LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="active nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content billing-page">
+    <header class="page-header">
+      <p class="page-eyebrow">Checkout</p>
+      <h1>Billing &amp; delivery details</h1>
+      <p class="page-lead">Enter where we should deliver and how you’d like to pay.</p>
+    </header>
+
+    <form class="billing-layout" id="billing-form" action="#" method="post">
+      <div class="billing-main">
+        <section class="form-section">
+          <h2>Contact</h2>
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="first-name">First name</label>
+              <input type="text" id="first-name" name="firstName" autocomplete="given-name" required placeholder="Aisha">
+            </div>
+            <div class="input-group">
+              <label for="last-name">Last name</label>
+              <input type="text" id="last-name" name="lastName" autocomplete="family-name" required placeholder="Rahman">
+            </div>
+          </div>
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com">
+            </div>
+            <div class="input-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" autocomplete="tel" required placeholder="+971 50 000 0000">
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section" id="delivery-address-section">
+          <h2>Delivery address</h2>
+          <div class="input-group">
+            <label for="country">Country / region</label>
+            <select id="country" name="country" autocomplete="country-name" required>
+              <option value="AE" selected>United Arab Emirates</option>
+              <option value="SA">Saudi Arabia</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="address1">Street address</label>
+            <input type="text" id="address1" name="addressLine1" autocomplete="address-line1" required placeholder="Building, street">
+          </div>
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" autocomplete="address-level2" required placeholder="Dubai">
+            </div>
+            <div class="input-group">
+              <label for="area">Area / community</label>
+              <input type="text" id="area" name="area" placeholder="e.g. JLT, Marina">
+            </div>
+          </div>
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="emirate">Emirate</label>
+              <select id="emirate" name="emirate" required>
+                <option value="" disabled selected>Select emirate</option>
+                <option value="dubai">Dubai</option>
+                <option value="abu-dhabi">Abu Dhabi</option>
+                <option value="sharjah">Sharjah</option>
+                <option value="ajman">Ajman</option>
+                <option value="rak">Ras Al Khaimah</option>
+                <option value="fujairah">Fujairah</option>
+                <option value="uaq">Umm Al Quwain</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="postal">Postal code (optional)</label>
+              <input type="text" id="postal" name="postal" autocomplete="postal-code" placeholder="00000">
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="instructions">Delivery instructions</label>
+            <textarea id="instructions" name="instructions" rows="3" placeholder="Gate code, building name, leave with reception…"></textarea>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <h2>Payment method</h2>
+          <fieldset class="payment-fieldset">
+            <legend class="visually-hidden">Choose payment method</legend>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="card" checked>
+              <span>Credit / debit card</span>
+              <span class="payment-badges">Visa · Mastercard · Amex</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="apple">
+              <span>Apple Pay</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="google">
+              <span>Google Pay</span>
+            </label>
+            <label class="payment-option">
+              <input type="radio" name="payment" value="cod">
+              <span>Cash on delivery</span>
+              <span class="muted small">May include a small handling fee</span>
+            </label>
+          </fieldset>
+
+          <div class="card-fields" id="card-fields">
+            <div class="input-group">
+              <label for="card-name">Name on card</label>
+              <input type="text" id="card-name" name="cardName" autocomplete="cc-name" placeholder="As shown on card">
+            </div>
+            <div class="input-group">
+              <label for="card-number">Card number</label>
+              <input type="text" id="card-number" name="cardNumber" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000">
+            </div>
+            <div class="form-row two">
+              <div class="input-group">
+                <label for="card-exp">Expiry</label>
+                <input type="text" id="card-exp" name="cardExp" autocomplete="cc-exp" placeholder="MM / YY">
+              </div>
+              <div class="input-group">
+                <label for="card-cvc">CVC</label>
+                <input type="text" id="card-cvc" name="cardCvc" autocomplete="cc-csc" placeholder="123">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="form-section">
+          <label class="checkbox-line">
+            <input type="checkbox" name="saveAddress" checked>
+            Save this address for next time
+          </label>
+          <label class="checkbox-line">
+            <input type="checkbox" name="marketing">
+            Email me weekly menus and offers
+          </label>
+        </section>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-cta">Place order</button>
+          <p class="form-note muted">By placing an order you agree to our terms.</p>
+        </div>
+      </div>
+
+      <aside class="billing-aside">
+        <div class="summary-card order-summary">
+          <h2>Order Summary</h2>
+          <!-- subscription selector injected by billing.js -->
+          <div class="order-lines">
+            <!-- cart items injected by billing.js -->
+          </div>
+          <p class="summary-disclaimer" id="surcharge-text" style="margin-top:0.75rem;">*Standard UAE delivery charges apply. Surcharges may apply for extended areas.</p>
+          <a href="personalization.html" class="btn-secondary outline full-width" style="margin-top:1rem; display:block; text-align:center;">+ Generate More Meals</a>
+        </div>
+      </aside>
+
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Fuel your body. Simplify your life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script src="billing.js"></script>
+  <script>
+    // ── Card field auto-formatting ──────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      // Card number: auto-insert spaces every 4 digits
+      const cardNumEl = document.getElementById('card-number');
+      if (cardNumEl) {
+        cardNumEl.addEventListener('input', function () {
+          let v = this.value.replace(/\D/g, '').substring(0, 16);
+          this.value = v.replace(/(.{4})/g, '$1 ').trim();
+        });
+      }
+
+      // Expiry: auto-insert slash after MM
+      const cardExpEl = document.getElementById('card-exp');
+      if (cardExpEl) {
+        cardExpEl.addEventListener('input', function (e) {
+          let v = this.value.replace(/\D/g, '').substring(0, 4);
+          if (v.length >= 3) v = v.substring(0, 2) + ' / ' + v.substring(2);
+          this.value = v;
+        });
+        cardExpEl.addEventListener('keydown', function (e) {
+          // Allow backspace to remove the slash cleanly
+          if (e.key === 'Backspace' && this.value.endsWith(' / ')) {
+            this.value = this.value.slice(0, -3);
+            e.preventDefault();
+          }
+        });
+      }
+
+      // CVC: digits only, max 4
+      const cardCvcEl = document.getElementById('card-cvc');
+      if (cardCvcEl) {
+        cardCvcEl.addEventListener('input', function () {
+          this.value = this.value.replace(/\D/g, '').substring(0, 4);
+        });
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

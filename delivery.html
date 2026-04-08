@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery — LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content page-narrow">
+    <header class="page-header">
+      <p class="page-eyebrow">Shipping &amp; fulfillment</p>
+      <h1>Fresh meals, delivered on your schedule</h1>
+      <p class="page-lead">Everything you expect from a modern meal service: clear cut-off times, tracking, and safe cold-chain handling.</p>
+    </header>
+
+
+    <div class="delivery-grid" id="standard-info">
+      <section class="info-card">
+        <h2>Delivery windows</h2>
+        <ul class="check-list">
+          <li><strong>Sunday &amp; Wednesday evenings</strong> — default drops for weekly subscribers (UAE metro).</li>
+          <li><strong>Morning slot (6:00–10:00)</strong> — optional for offices and early risers.</li>
+          <li><strong>Evening slot (17:00–21:00)</strong> — most popular for home delivery.</li>
+        </ul>
+      </section>
+
+      <section class="info-card">
+        <h2>Order cut-off</h2>
+        <p>Place or change your order before <strong>Thursday 23:59</strong> for the following week’s menu. Changes after cut-off may roll to the next cycle.</p>
+        <p class="muted">You’ll receive a confirmation email and SMS with your delivery day once the kitchen locks your plan.</p>
+      </section>
+
+      <section class="info-card">
+        <h2>Coverage &amp; fees</h2>
+        <ul class="check-list">
+          <li><strong>Dubai, Abu Dhabi, Sharjah</strong> — standard chilled delivery (fee shown in pricing).</li>
+          <li><strong>Other emirates</strong> — scheduled routes on select days; surcharge may apply at checkout.</li>
+          <li><strong>Building access</strong> — leave delivery notes (gate code, concierge) in billing.</li>
+        </ul>
+      </section>
+
+      <section class="info-card">
+        <h2>Tracking &amp; handoff</h2>
+        <p>On delivery day you get a tracking link when the driver is en route. If you’re unavailable, we can leave the insulated bag with security or a neighbour per your instructions.</p>
+      </section>
+
+      <section class="info-card">
+        <h2>Packaging &amp; food safety</h2>
+        <p>Meals arrive in a temperature-controlled bag with ice packs. Refrigerate immediately and consume by the “enjoy by” date on each label.</p>
+      </section>
+
+      <section class="info-card highlight-card">
+        <h2>Returns &amp; issues</h2>
+        <p>Report missing or damaged items within <strong>24 hours</strong> through support — we’ll credit or replace on the next delivery.</p>
+        <a class="btn-primary inline-btn" href="billing.html">Go to checkout</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Fuel your body. Simplify your life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html" class="active">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

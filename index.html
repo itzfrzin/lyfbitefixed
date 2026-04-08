@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LyfBite - Personalized Meal Planner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">Lyf<span>Bite</span></div>
+      <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <!-- Home / Hero Section -->
+    <section id="home-section" class="active-section">
+      <div class="hero-container">
+        <div class="hero-content" style="text-align: center; max-width: 100%;">
+          <div class="hero-badge">AI-Powered Nutrition</div>
+          <h1>LyfBite - <br><span>Bite into a Healthier Life</span></h1>
+          <p style="margin: 0 auto 2.5rem; max-width: 600px;">Stop guessing what to eat. Tell us your goals, and get a bespoke, data-driven daily menu designed specifically for your body and lifestyle.</p>
+          <div class="hero-actions">
+            <button class="btn-cta" id="hero-start-btn" onclick="window.location.href='personalization.html'">
+              <span class="btn-text">Start Your Journey &rarr;</span>
+            </button>
+            <div class="hero-stats" style="border-left: none; padding-left: 0;">
+              <div class="stat"><strong>10k+</strong>Plans</div>
+              <div class="stat"><strong>4.9/5</strong>Rating</div>
+            </div>
+          </div>
+          <div class="hero-pricing-link" style="justify-content: center; display: flex;">
+            <a href="plus.html">View flexible personalization &rarr;</a>
+          </div>
+        </div>
+        
+        <div class="hero-visual" style="flex: unset; width: 100%; display: flex; justify-content: center; animation: none; margin-top: 3rem;">
+          <div class="hero-image-wrapper">
+            <img src="hero_light.jpg" alt="LyfBite AI Light" class="hero-image light-img">
+            <img src="hero_dark.jpg" alt="LyfBite AI Dark" class="hero-image dark-img" style="display: none;">
+          </div>
+        </div>
+      </div>
+
+      <!-- Features / Benefits Section -->
+      <div class="features-section">
+        <div class="section-title">
+          <h2>Why Choose Lyf<span>Bite</span>?</h2>
+          <p>We combine nutritional science with smart algorithms to create meal plans you actually want to eat.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Goal-Oriented</h3>
+            <p>Whether you're looking to shed weight, gain muscle, or just eat cleaner, our engine optimizes your macros instantly.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⏱️</div>
+            <h3>Time-Saving</h3>
+            <p>No more staring blankly at the fridge. Get a full week's worth of meals, complete with calories and prep times.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🥗</div>
+            <h3>Allergy Safe</h3>
+            <p>Strict dietary requirements? No problem. Block allergens and pick specific diets with a single click.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- How It Works Section -->
+      <div class="how-it-works">
+        <div class="hiw-content">
+          <h2>3 Steps to a Healthier You</h2>
+          <div class="step-list">
+            <div class="step-item">
+              <div class="step-number">1</div>
+              <div class="step-text">
+                <h3>Tell us about yourself</h3>
+                <p>Share your age, weight, activity level, and your main fitness goal.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">2</div>
+              <div class="step-text">
+                <h3>Set your preferences</h3>
+                <p>Filter out foods you hate, add your allergies, and pick your diet style (Keto, Vegan, etc).</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <div class="step-number">3</div>
+              <div class="step-text">
+                <h3>Get your daily menu</h3>
+                <p>Instantly receive a 7-day personalized menu, perfectly tailored to your body's needs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hiw-visual">
+          <div class="mockup-card">
+            <div class="mockup-header">Your Plan Generated!</div>
+            <div class="skeleton-line scale-100"></div>
+            <div class="skeleton-line scale-80"></div>
+            <div class="skeleton-line scale-90"></div>
+            <div class="mockup-success">✔️ Ready in seconds</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section integrated on Home -->
+    <section class="reviews-section" style="padding: 6rem 2rem;">
+      <div class="section-title">
+        <h2>What Our <span>Members Say</span></h2>
+        <p>Real stories from people who simplified their nutrition.</p>
+      </div>
+      <div class="reviews-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+        
+        <div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <img src="https://ui-avatars.com/api/?name=Bibin+Mathew&background=B5C99A&color=fff&rounded=true" alt="Bibin M." style="width:50px; height:50px; border-radius: 50%;">
+            <div>
+              <h3 style="font-size: 1.1rem; margin: 0; color: var(--ds-text-primary);">Bibin Mathew</h3>
+              <div style="color: #FFD700; font-size: 0.9rem;">★★★★★</div>
+            </div>
+          </div>
+          <p style="color: var(--ds-text-secondary); font-style: italic; line-height: 1.6;">"LyfBite completely changed how I approach my week. I used to spend hours meal prepping and calculating calories. Now, I just tell it what I want, buy the groceries, and I'm done. I've lost 5kg in two months without feeling restricted."</p>
+        </div>
+
+        <div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <img src="https://ui-avatars.com/api/?name=Omar+Tariq&background=718355&color=fff&rounded=true" alt="Omar T." style="width:50px; height:50px; border-radius: 50%;">
+            <div>
+              <h3 style="font-size: 1.1rem; margin: 0; color: var(--ds-text-primary);">Omar Tariq</h3>
+              <div style="color: #FFD700; font-size: 0.9rem;">★★★★★</div>
+            </div>
+          </div>
+          <p style="color: var(--ds-text-secondary); font-style: italic; line-height: 1.6;">"The meal generation AI is shockingly accurate. As a vegan, usually these apps just give me plain salads. LyfBite actually gives me creative, high-protein plant-based recipes that take under 20 mins to make."</p>
+        </div>
+
+        <div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <img src="https://ui-avatars.com/api/?name=Laila+Al-Mansoori&background=87986A&color=fff&rounded=true" alt="Laila M." style="width:50px; height:50px; border-radius: 50%;">
+            <div>
+              <h3 style="font-size: 1.1rem; margin: 0; color: var(--ds-text-primary);">Laila Al-Mansoori</h3>
+              <div style="color: #FFD700; font-size: 0.9rem;">★★★★★</div>
+            </div>
+          </div>
+          <p style="color: var(--ds-text-secondary); font-style: italic; line-height: 1.6;">"Finally an app that understands local UAE ingredients! Setting my allergies was a breeze, and I upgraded to LyfBite Plus to have dinners pre-made. Pure convenience and totally game-changing."</p>
+        </div>
+
+        <div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <img src="https://ui-avatars.com/api/?name=James+Chen&background=B5C99A&color=fff&rounded=true" alt="James C." style="width:50px; height:50px; border-radius: 50%;">
+            <div>
+              <h3 style="font-size: 1.1rem; margin: 0; color: var(--ds-text-primary);">James Chen</h3>
+              <div style="color: #FFD700; font-size: 0.9rem;">★★★★☆</div>
+            </div>
+          </div>
+          <p style="color: var(--ds-text-secondary); font-style: italic; line-height: 1.6;">"I'm bulking, and hitting 3,500 clean calories daily was a nightmare before this. The AI builds me massive but healthy meals. Tracking them via the single-tap ring is the easiest macro-logging I've ever done."</p>
+        </div>
+
+        <div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <img src="https://ui-avatars.com/api/?name=Maya+Patel&background=718355&color=fff&rounded=true" alt="Maya P." style="width:50px; height:50px; border-radius: 50%;">
+            <div>
+              <h3 style="font-size: 1.1rem; margin: 0; color: var(--ds-text-primary);">Maya Patel</h3>
+              <div style="color: #FFD700; font-size: 0.9rem;">★★★★★</div>
+            </div>
+          </div>
+          <p style="color: var(--ds-text-secondary); font-style: italic; line-height: 1.6;">"The LyfBite dark mode is an absolute vibe. Not only is the app gorgeous to use, but taking the guesswork out of my weekly shopping has saved me so much mental overhead. Highly recommend."</p>
+        </div>
+
+        <div class="glass" style="padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+          <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+            <img src="https://ui-avatars.com/api/?name=David+R.&background=87986A&color=fff&rounded=true" alt="David R." style="width:50px; height:50px; border-radius: 50%;">
+            <div>
+              <h3 style="font-size: 1.1rem; margin: 0; color: var(--ds-text-primary);">David R.</h3>
+              <div style="color: #FFD700; font-size: 0.9rem;">★★★★★</div>
+            </div>
+          </div>
+          <p style="color: var(--ds-text-secondary); font-style: italic; line-height: 1.6;">"Being highly intolerant to gluten and dairy made eating out impossible. Now I prep my LyfBite generated meals effortlessly. It's essentially a free private dietician right in my pocket."</p>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- Landing / Wizard Section -->
+    <section id="wizard-section" class="hidden-section">
+      <div class="wizard-container">
+        <div class="wizard-header">
+          <h1>Craft Your Perfect Meal Plan</h1>
+          <p>Tell us about yourself and your goals, and we'll handle the rest.</p>
+        </div>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <form id="onboarding-form">
+          <!-- Step 1: Goal -->
+          <div class="wizard-step active-step" id="step-1">
+            <h2>What's your primary goal?</h2>
+            <div class="card-grid" id="goal-selection">
+              <div class="card" data-value="Weight Loss">
+                <div class="card-icon">🥗</div>
+                <h3>Weight Loss</h3>
+              </div>
+              <div class="card" data-value="Muscle Gain">
+                <div class="card-icon">💪</div>
+                <h3>Muscle Gain</h3>
+              </div>
+              <div class="card" data-value="Balanced Diet">
+                <div class="card-icon">🥑</div>
+                <h3>Balanced Diet</h3>
+              </div>
+              <div class="card" data-value="Energy Boost">
+                <div class="card-icon">⚡</div>
+                <h3>Energy Boost</h3>
+              </div>
+              <div class="card" data-value="Heart Health">
+                <div class="card-icon">❤️</div>
+                <h3>Heart Health</h3>
+              </div>
+              <div class="card" data-value="Gut Health">
+                <div class="card-icon">🦠</div>
+                <h3>Gut Health</h3>
+              </div>
+            </div>
+            <div class="step-actions">
+              <button type="button" class="btn-primary" id="next-1" disabled>Next Step &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Demographics -->
+          <div class="wizard-step" id="step-2">
+            <h2>Tell us about yourself</h2>
+            <div class="input-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" placeholder="e.g. 28" min="16" max="100">
+            </div>
+            <div class="input-group">
+              <label>Gender</label>
+              <div class="radio-group" id="gender-selection">
+                <label class="radio-card"><input type="radio" name="gender" value="Female"> <span>Female</span></label>
+                <label class="radio-card"><input type="radio" name="gender" value="Male"> <span>Male</span></label>
+                <label class="radio-card"><input type="radio" name="gender" value="Other"> <span>Other</span></label>
+              </div>
+            </div>
+            <div class="input-group">
+              <label>Weight (kg)</label>
+              <div class="slider-container">
+                <input type="range" id="weight" min="40" max="150" value="70">
+                <span id="weight-display">70 kg</span>
+              </div>
+            </div>
+            <div class="input-group">
+              <label for="activity">Activity Level</label>
+              <select id="activity">
+                <option value="" disabled selected>Select activity level</option>
+                <option value="Sedentary">Sedentary</option>
+                <option value="Lightly Active">Lightly Active</option>
+                <option value="Moderately Active">Moderately Active</option>
+                <option value="Very Active">Very Active</option>
+              </select>
+            </div>
+            <div class="step-actions split">
+              <button type="button" class="btn-secondary" id="prev-2">&larr; Back</button>
+              <button type="button" class="btn-primary" id="next-2">Next Step &rarr;</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Dietary & Allergies -->
+          <div class="wizard-step" id="step-3">
+            <h2>Dietary Preferences & Allergies</h2>
+            <div class="input-group">
+              <label for="diet">Dietary Preference</label>
+              <select id="diet">
+                <option value="Standard">Standard</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Keto">Keto</option>
+                <option value="Paleo">Paleo</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="allergies">Allergies (Type and press Enter)</label>
+              <div class="tags-input-container">
+                <div id="tags-container" class="tags-container"></div>
+                <input type="text" id="allergies" placeholder="e.g. Peanuts, Gluten...">
+              </div>
+            </div>
+            <div class="step-actions split">
+              <button type="button" class="btn-secondary" id="prev-3">&larr; Back</button>
+              <button type="button" class="btn-cta" id="generate-btn">
+                <span class="btn-text">Generate My LyfBite Plan</span>
+                <span class="btn-loader loader-hidden"></span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Loading Screen -->
+    <section id="loading-section" class="hidden-section">
+      <div class="loading-container">
+        <div class="spinner"></div>
+        <h2>Curating your perfect menu...</h2>
+        <p>Analyzing goals and preferences</p>
+      </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard-section" class="hidden-section">
+      <div class="dashboard-header">
+        <div>
+          <h2>Your Weekly Overview</h2>
+          <p id="plan-subtitle">Personalized Setup</p>
+        </div>
+        <button class="btn-secondary outline">Download PDF</button>
+      </div>
+
+      <div class="calendar-container">
+        <div class="week-grid" id="week-grid">
+          <!-- JS will populate days here -->
+        </div>
+      </div>
+
+      <div class="daily-breakdown" id="daily-breakdown" style="display: none;">
+        <div class="breakdown-header">
+          <h3 id="breakdown-day-title">Monday's Plan</h3>
+          <button class="close-breakdown" id="close-breakdown">&times;</button>
+        </div>
+        <div class="meal-blocks" id="meal-blocks">
+          <!-- JS will populate meals here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Settings Section -->
+    <section id="settings-section" class="hidden-section">
+      <div class="settings-container">
+        <div class="settings-header">
+          <h1>Preferences</h1>
+          <p>Customize your LyfBite experience.</p>
+        </div>
+
+        <div class="settings-group">
+          <h2>Appearance</h2>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Dark Mode</h3>
+              <p>Easier on the eyes, especially at night.</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="theme-toggle-settings">
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h2>Measurement Units</h2>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>System</h3>
+              <p>Choose between Metric (kg/cm) or Imperial (lbs/in).</p>
+            </div>
+            <div class="radio-group units-group">
+              <label class="radio-card">
+                <input type="radio" name="units" value="metric" checked> Metric
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="units" value="imperial"> Imperial
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h2>Notifications</h2>
+          <div class="setting-item">
+            <div class="setting-info">
+              <h3>Meal Reminders</h3>
+              <p>Get subtle push notifications when it's time to eat.</p>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="notif-toggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="main-footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Fuel your body. Simplify your life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

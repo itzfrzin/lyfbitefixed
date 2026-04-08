@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracker — LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html" class="active">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content page-narrow">
+    <header class="page-header">
+      <p class="page-eyebrow">Daily habits</p>
+      <h1>Calorie &amp; water tracker</h1>
+      <p class="page-lead">Track today’s intake with interactive sliders. Your progress is saved locally on this device.</p>
+    </header>
+
+    <div class="tracker-grid">
+      <section class="tracker-card">
+        <div class="tracker-head">
+          <h2>Calories</h2>
+          <div class="tracker-pill"><span id="cal-date">Today</span></div>
+        </div>
+
+        <div class="ring-row">
+          <div class="progress-ring" data-ring="cal">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-bg" cx="60" cy="60" r="46"></circle>
+              <circle class="ring-fg" cx="60" cy="60" r="46"></circle>
+            </svg>
+            <div class="ring-center">
+              <div class="ring-big" id="cal-consumed-label">0</div>
+              <div class="ring-sub">kcal</div>
+            </div>
+          </div>
+
+          <div class="tracker-metrics">
+            <div class="metric">
+              <div class="metric-label">Goal</div>
+              <div class="metric-value"><span id="cal-goal-label">2200</span> kcal</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Remaining</div>
+              <div class="metric-value"><span id="cal-remaining-label">2200</span> kcal</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Streak</div>
+              <div class="metric-value"><span id="cal-streak-label">0</span> days</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-block">
+          <label class="slider-label" for="cal-goal">Daily goal</label>
+          <div class="slider-container">
+            <input type="range" id="cal-goal" min="1200" max="4500" step="50" value="2200">
+            <span id="cal-goal-badge">2200</span>
+          </div>
+        </div>
+
+        <div class="slider-block">
+          <label class="slider-label" for="cal-consumed">Consumed today</label>
+          <div class="slider-container">
+            <input type="range" id="cal-consumed" min="0" max="4500" step="10" value="0">
+            <span id="cal-consumed-badge">0</span>
+          </div>
+        </div>
+
+        <div class="tracker-actions">
+          <button type="button" class="btn-secondary outline" id="cal-reset">Reset today</button>
+          <button type="button" class="btn-primary" id="cal-mark">Mark day complete</button>
+        </div>
+      </section>
+
+      <section class="tracker-card">
+        <div class="tracker-head">
+          <h2>Water</h2>
+          <div class="tracker-pill">Hydration</div>
+        </div>
+
+        <div class="ring-row">
+          <div class="progress-ring" data-ring="water">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-bg" cx="60" cy="60" r="46"></circle>
+              <circle class="ring-fg water" cx="60" cy="60" r="46"></circle>
+            </svg>
+            <div class="ring-center">
+              <div class="ring-big" id="water-consumed-label">0</div>
+              <div class="ring-sub">ml</div>
+            </div>
+          </div>
+
+          <div class="tracker-metrics">
+            <div class="metric">
+              <div class="metric-label">Goal</div>
+              <div class="metric-value"><span id="water-goal-label">2500</span> ml</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Remaining</div>
+              <div class="metric-value"><span id="water-remaining-label">2500</span> ml</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Streak</div>
+              <div class="metric-value"><span id="water-streak-label">0</span> days</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slider-block">
+          <label class="slider-label" for="water-goal">Daily goal</label>
+          <div class="slider-container">
+            <input type="range" id="water-goal" min="1200" max="5000" step="100" value="2500">
+            <span id="water-goal-badge">2500</span>
+          </div>
+        </div>
+
+        <div class="slider-block">
+          <label class="slider-label" for="water-consumed">Consumed today</label>
+          <div class="slider-container">
+            <input type="range" id="water-consumed" min="0" max="5000" step="50" value="0">
+            <span id="water-consumed-badge">0</span>
+          </div>
+        </div>
+
+        <div class="quick-cups">
+          <button type="button" class="cup" data-add-water="250">+250</button>
+          <button type="button" class="cup" data-add-water="500">+500</button>
+          <button type="button" class="cup" data-add-water="750">+750</button>
+        </div>
+
+        <div class="tracker-actions">
+          <button type="button" class="btn-secondary outline" id="water-reset">Reset today</button>
+          <button type="button" class="btn-primary" id="water-mark">Mark day complete</button>
+        </div>
+      </section>
+    </div>
+
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Fuel your body. Simplify your life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script src="tracker.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

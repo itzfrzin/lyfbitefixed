@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalization — LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html" class="active">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <header class="page-header" style="text-align: center; margin: 0 auto 3rem; max-width: 700px; width: 100%;">
+      <p class="page-eyebrow">Smart AI Nutrition</p>
+      <h1>Craft Your Perfect AI Meal Plan</h1>
+      <p class="page-lead">Answer a few quick questions and our expert AI will generate a personalized meal plan tailored to your body and goals.</p>
+    </header>
+
+    <div class="wizard-container" id="form-container" style="max-width: 800px; margin: 0 auto; background: var(--ds-surface); padding: 3rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--ds-border);">
+      <div class="progress-bar-container">
+        <div class="progress-bar" id="progress-bar" style="width: 0%;"></div>
+      </div>
+
+      <form id="ai-wizard-form">
+        <!-- Step 1 -->
+        <div class="wizard-step active-step" id="step-1">
+          <h2>Profile & Goals</h2>
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" required min="16" max="100" placeholder="e.g. 28">
+            </div>
+            <div class="input-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="weight">Weight (kg)</label>
+              <input type="number" id="weight" name="weight" required min="40" max="200" placeholder="e.g. 70">
+            </div>
+            <div class="input-group">
+              <label for="goal">Primary Goal</label>
+              <select id="goal" name="goal" required>
+                <option value="Weight Loss">Weight Loss</option>
+                <option value="Muscle Gain">Muscle Gain</option>
+                <option value="Balanced Diet">Balanced Diet</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="calories">Daily Calorie Target</label>
+              <input type="number" id="calories" name="calories" required placeholder="e.g. 2000">
+            </div>
+            <div class="input-group">
+              <label for="macros">Macro Preference</label>
+              <select id="macros" name="macros" required>
+                <option value="High Protein">High Protein</option>
+                <option value="Low Carb">Low Carb</option>
+                <option value="Balanced">Balanced</option>
+              </select>
+            </div>
+          </div>
+          <div class="step-actions" style="margin-top: 2rem;">
+            <button type="button" class="btn-primary" id="btn-next-1" style="width: 100%;">Next: Health & Diet &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="wizard-step" id="step-2">
+          <h2>Health & Diet</h2>
+          <div class="input-group">
+            <label for="diet">Dietary Restrictions</label>
+            <select id="diet" name="diet">
+              <option value="None">None (Standard)</option>
+              <option value="Vegetarian">Vegetarian</option>
+              <option value="Vegan">Vegan</option>
+              <option value="Gluten-Free">Gluten-Free</option>
+              <option value="Keto">Keto</option>
+              <option value="Paleo">Paleo</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Health Issues</label>
+            <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
+              <label><input type="checkbox" name="healthIssues" value="Diabetes"> Diabetes</label>
+              <label><input type="checkbox" name="healthIssues" value="High BP"> High BP</label>
+              <label><input type="checkbox" name="healthIssues" value="GI Issues"> GI Issues</label>
+              <label><input type="checkbox" name="healthIssues" value="Cholesterol"> High Cholesterol</label>
+            </div>
+          </div>
+          <div class="input-group" style="margin-top: 1.5rem;">
+            <label for="allergies">Allergies / Ingredient Exclusions</label>
+            <input type="text" id="allergies" name="allergies" placeholder="e.g. Peanuts, Dairy, Shellfish, Mushrooms">
+            <p class="option-hint">Separate by commas.</p>
+          </div>
+          <div class="step-actions split" style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <button type="button" class="btn-secondary" id="btn-prev-2" style="flex: 1;">&larr; Back</button>
+            <button type="button" class="btn-primary" id="btn-next-2" style="flex: 2;">Next: Lifestyle &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="wizard-step" id="step-3">
+          <h2>How Many Meals Do You Want?</h2>
+          <p style="color: var(--ds-text-secondary); margin-bottom: 1.5rem;">Choose how many personalized meal plans our AI should generate for you.</p>
+          <div class="input-group">
+            <label>Number of Meal Plans</label>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.5rem;" id="meal-count-options">
+              <label class="meal-count-btn" style="flex:1;">
+                <input type="radio" name="mealCountRadio" value="1" required> <span>1 Meal</span>
+              </label>
+              <label class="meal-count-btn" style="flex:1;">
+                <input type="radio" name="mealCountRadio" value="2" required> <span>2 Meals</span>
+              </label>
+              <label class="meal-count-btn" style="flex:1;">
+                <input type="radio" name="mealCountRadio" value="3" checked required> <span>3 Meals</span>
+              </label>
+              <label class="meal-count-btn" style="flex:1;">
+                <input type="radio" name="mealCountRadio" value="custom" required> <span>Custom</span>
+              </label>
+            </div>
+            <div id="custom-count-wrapper" style="display: none; margin-top: 1rem;">
+              <label for="mealCountCustom">Enter number of meals (1–10):</label>
+              <input type="number" id="mealCountCustom" name="mealCountCustom" min="1" max="10" placeholder="e.g. 5" style="margin-top: 0.5rem;">
+            </div>
+          </div>
+
+          <div class="step-actions split" style="margin-top: 2rem; display: flex; gap: 1rem;">
+            <button type="button" class="btn-secondary" id="btn-prev-3" style="flex: 1;">&larr; Back</button>
+            <button type="submit" class="btn-cta" id="btn-submit" style="flex: 2; padding: 1rem; font-size: 1.1rem;">Generate Meal Plans ✨</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- AI Loading State -->
+    <div id="ai-loading" style="display: none; text-align: center; padding: 4rem 2rem;">
+      <div class="spinner"></div>
+      <h2 style="margin-top: 1.5rem; color: var(--ds-primary);">AI Thinking...</h2>
+      <p style="color: var(--ds-text-secondary);" id="ai-loading-text">Designing your personalized meals...</p>
+    </div>
+
+    <div id="ai-error" style="display: none; background: #fee2e2; color: #b91c1c; padding: 1rem; border-radius: var(--radius-md); text-align: center; max-width: 600px; margin: 2rem auto;"></div>
+
+    <!-- AI Results Container -->
+    <div id="ai-results" style="display: none; margin-top: 3rem;">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+        <h2 style="color: var(--ds-primary); margin: 0;">Your Personalized Menu</h2>
+        <button id="add-all-to-cart" class="btn-primary" style="display: flex; align-items: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border: none; cursor: pointer; font-weight: 600;">🛒 Add All to Cart</button>
+      </div>
+
+      <!-- Meals Grid -->
+      <div class="meals-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+        <!-- Injected via JS -->
+      </div>
+
+      <!-- Tracker Section -->
+      <div class="tracker-section" style="background: var(--ds-surface); border: 1px solid var(--ds-border); border-radius: var(--radius-lg); padding: 2rem; margin-bottom: 4rem; box-shadow: var(--shadow-sm);">
+        <h3 style="margin-bottom: 1.5rem; color: var(--ds-primary);">Nutrition Tracker</h3>
+        <p style="color: var(--ds-text-secondary); margin-bottom: 1rem;">Based on your generated meals, here is your daily progress estimate:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between;">
+          <div class="tracker-ring" style="flex: 1; text-align: center;">
+            <div style="width: 120px; height: 120px; border-radius: 50%; border: 8px solid var(--ds-accent); display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 1.5rem; font-weight: bold; color: var(--ds-text-primary);">
+              <span id="tracker-cals">0</span>
+            </div>
+            <p style="margin-top: 0.5rem; font-weight: 600;">Calories</p>
+          </div>
+          <div style="flex: 2; display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;"><span style="font-weight:600;">Protein</span><span id="tracker-pro">0g</span></div>
+              <div style="width: 100%; height: 8px; background: var(--ds-border); border-radius: 4px; overflow: hidden;"><div style="width: 30%; height: 100%; background: var(--ds-primary);"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;"><span style="font-weight:600;">Carbs</span><span id="tracker-car">0g</span></div>
+              <div style="width: 100%; height: 8px; background: var(--ds-border); border-radius: 4px; overflow: hidden;"><div style="width: 40%; height: 100%; background: var(--ds-primary-light);"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;"><span style="font-weight:600;">Fats</span><span id="tracker-fat">0g</span></div>
+              <div style="width: 100%; height: 8px; background: var(--ds-border); border-radius: 4px; overflow: hidden;"><div style="width: 30%; height: 100%; background: var(--ds-accent-hover);"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Surprise Add-ons -->
+      <div class="addons-section" style="margin-bottom: 4rem;">
+        <h3 style="margin-bottom: 1.5rem; font-size: 1.75rem;">Healthy Craving Add-ons 🎁</h3>
+        <p style="color: var(--ds-text-secondary); margin-bottom: 2rem;">Indulge guilt-free with these healthy versions of your favorite cravings.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+          <div style="background: var(--ds-surface); border: 1px solid var(--ds-border); padding: 1.5rem; border-radius: var(--radius-md); text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🍟</div>
+            <h4 style="margin-bottom: 0.5rem;">Sweet Potato "Fries"</h4>
+            <p style="font-size: 0.9rem; color: var(--ds-text-secondary); margin-bottom: 1rem;">Air-fried to perfection with a hint of sea salt, extra crispy.</p>
+            <button class="btn-primary addon-btn" data-name="Sweet Potato Fries" data-price="3.00" style="width:100%; font-size: 0.9rem;">+ $3.00</button>
+          </div>
+          <div style="background: var(--ds-surface); border: 1px solid var(--ds-border); padding: 1.5rem; border-radius: var(--radius-md); text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🍰</div>
+            <h4 style="margin-bottom: 0.5rem;">Keto Choco Lava Cake</h4>
+            <p style="font-size: 0.9rem; color: var(--ds-text-secondary); margin-bottom: 1rem;">Sugar-free dark chocolate with a gooey center.</p>
+            <button class="btn-primary addon-btn" data-name="Keto Choco Lava Cake" data-price="3.00" style="width:100%; font-size: 0.9rem;">+ $3.00</button>
+          </div>
+          <div style="background: var(--ds-surface); border: 1px solid var(--ds-border); padding: 1.5rem; border-radius: var(--radius-md); text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">🍪</div>
+            <h4 style="margin-bottom: 0.5rem;">Protein Cookie Dough</h4>
+            <p style="font-size: 0.9rem; color: var(--ds-text-secondary); margin-bottom: 1rem;">High-protein, edible dough with dark chocolate chips.</p>
+            <button class="btn-primary addon-btn" data-name="Protein Cookie Dough" data-price="3.00" style="width:100%; font-size: 0.9rem;">+ $3.00</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Weekly Delivery -->
+      <div class="delivery-cta" style="background: linear-gradient(135deg, var(--ds-primary) 0%, var(--ds-primary-light) 100%); color: white; padding: 4rem 2rem; border-radius: var(--radius-lg); text-align: center; box-shadow: var(--shadow-lg);">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: white;">Love These Meals?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; opacity: 0.9;">Subscribe to our Weekly Meal Delivery. Our chefs will prep these exactly to your macros and deliver them fresh to your door.</p>
+        <a href="billing.html" class="btn-cta" style="background: var(--ds-accent); color: #121212 !important; padding: 1.25rem 3rem; font-size: 1.25rem; display: inline-block; text-decoration: none;">Start Weekly Subscription &rarr;</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Bite into a healthier life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script src="personalization.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In - LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .auth-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--ds-bg) 0%, var(--ds-surface) 100%);
+    }
+    .auth-wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 900px;
+      min-height: 520px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+    .auth-panel-left {
+      flex: 1;
+      background: linear-gradient(145deg, #4a6230 0%, var(--ds-primary) 100%);
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-panel-left::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+    }
+    .auth-panel-left::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .auth-panel-left h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+    .auth-panel-left p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+    .auth-quote {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 14px;
+      font-style: italic;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+      line-height: 1.6;
+    }
+    .auth-quote-author {
+      margin-top: 0.75rem;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      font-style: normal;
+      font-weight: 600;
+    }
+    .auth-panel-right {
+      flex: 1.1;
+      background: var(--ds-surface);
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .auth-logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ds-text-primary);
+      margin-bottom: 2rem;
+      text-decoration: none;
+      display: block;
+    }
+    .auth-logo span { color: var(--ds-primary); }
+    .auth-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--ds-text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .auth-subtitle {
+      color: var(--ds-text-secondary);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .auth-subtitle a {
+      color: var(--ds-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .auth-form .field-group { margin-bottom: 1.3rem; }
+    .auth-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ds-text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .auth-form input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.85rem 1rem;
+      border: 1.5px solid var(--ds-border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--ds-bg);
+      color: var(--ds-text-primary);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .auth-form input:focus {
+      border-color: var(--ds-primary);
+      box-shadow: 0 0 0 3px rgba(113, 131, 85, 0.15);
+    }
+    .auth-form input.error { border-color: #e53e3e; }
+    .field-error {
+      font-size: 0.78rem;
+      color: #e53e3e;
+      margin-top: 0.3rem;
+      display: none;
+    }
+    .field-error.visible { display: block; }
+    .password-wrapper { position: relative; display: block; }
+    .password-wrapper input { padding-right: 2.8rem; width: 100%; box-sizing: border-box; }
+    .toggle-pw {
+      position: absolute;
+      right: 0.75rem; top: 50%; transform: translateY(-50%);
+      background: none; border: none;
+      cursor: pointer;
+      color: var(--ds-text-secondary);
+      font-size: 1rem;
+      padding: 0;
+      line-height: 1;
+      z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px;
+    }
+    .toggle-pw:hover { color: var(--ds-primary); }
+    .btn-auth {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--ds-primary), #5a7040);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-auth:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(113,131,85,0.35);
+    }
+    .btn-auth:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+    .auth-msg {
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .auth-msg.success {
+      background: #f0fdf4; color: #166534;
+      border: 1px solid #bbf7d0; display: block;
+    }
+    .auth-msg.error {
+      background: #fef2f2; color: #991b1b;
+      border: 1px solid #fecaca; display: block;
+    }
+    [data-theme="dark"] .auth-msg.success {
+      background: rgba(22,101,52,0.2); color: #86efac;
+      border-color: rgba(134,239,172,0.3);
+    }
+    [data-theme="dark"] .auth-msg.error {
+      background: rgba(153,27,27,0.2); color: #fca5a5;
+      border-color: rgba(252,165,165,0.3);
+    }
+    .spinner-sm {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (max-width: 700px) {
+      .auth-panel-left { display: none; }
+      .auth-wrapper { border-radius: 16px; }
+    }
+  </style>
+</head>
+<body class="auth-page">
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links" style="gap:1rem;">
+        <a href="index.html" style="color:var(--ds-text-secondary);font-weight:500;text-decoration:none;">← Back to Home</a>
+        <a href="signup.html" style="color:var(--ds-primary);font-weight:600;text-decoration:none;">Create Account</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="auth-main">
+    <div class="auth-wrapper">
+      <!-- Left panel -->
+      <div class="auth-panel-left">
+        <h2>Welcome Back! 🥑</h2>
+        <p>Log back in and continue your personalised nutrition journey where you left off.</p>
+        <div class="auth-quote">
+          "LyfBite completely changed how I approach my week. I've lost 5kg in two months without feeling restricted."
+          <div class="auth-quote-author">— Bibin Mathew, LyfBite Member</div>
+        </div>
+      </div>
+
+      <!-- Right form panel -->
+      <div class="auth-panel-right">
+        <a href="index.html" class="auth-logo">Lyf<span>Bite</span></a>
+        <h1 class="auth-title">Log In</h1>
+        <p class="auth-subtitle">Don't have an account? <a href="signup.html">Sign up free</a></p>
+
+        <div class="auth-msg" id="auth-msg"></div>
+
+        <form class="auth-form" id="login-form" novalidate>
+          <div class="field-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="sara@example.com" autocomplete="email">
+            <div class="field-error" id="err-email">Please enter a valid email.</div>
+          </div>
+          <div class="field-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" placeholder="Your password" autocomplete="current-password">
+              <button type="button" class="toggle-pw" id="toggle-pw">👁</button>
+            </div>
+            <div class="field-error" id="err-password">Please enter your password.</div>
+          </div>
+          <button type="submit" class="btn-auth" id="login-btn">
+            <span id="btn-text">Log In</span>
+            <div class="spinner-sm" id="btn-spinner"></div>
+          </button>
+        </form>
+
+        <p style="text-align:center; margin-top:1.5rem; font-size:0.85rem; color: var(--ds-text-secondary);">
+          New here? <a href="signup.html" style="color: var(--ds-primary); font-weight:600; text-decoration:none;">Create a free account →</a>
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const user = lyfbiteAuth.getUser();
+      if (user) { window.location.href = 'index.html'; return; }
+
+      const msg = document.getElementById('auth-msg');
+
+      document.getElementById('toggle-pw').addEventListener('click', () => {
+        const pw = document.getElementById('password');
+        pw.type = pw.type === 'password' ? 'text' : 'password';
+      });
+
+      function showError(id, show) {
+        document.getElementById('err-' + id)?.classList.toggle('visible', show);
+        document.getElementById(id)?.classList.toggle('error', show);
+      }
+
+      document.getElementById('login-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.className = 'auth-msg';
+        const em = document.getElementById('email').value.trim();
+        const pw = document.getElementById('password').value;
+
+        let valid = true;
+        if (!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showError('email', true); valid = false; } else showError('email', false);
+        if (!pw) { showError('password', true); valid = false; } else showError('password', false);
+        if (!valid) return;
+
+        const btn = document.getElementById('login-btn');
+        const btnText = document.getElementById('btn-text');
+        const spinner = document.getElementById('btn-spinner');
+        btn.disabled = true;
+        btnText.textContent = 'Logging in…';
+        spinner.style.display = 'block';
+
+        const result = await lyfbiteAuth.login({ email: em, password: pw });
+
+        spinner.style.display = 'none';
+        btn.disabled = false;
+        btnText.textContent = 'Log In';
+
+        if (result.success) {
+          msg.className = 'auth-msg success';
+          msg.textContent = '✅ Logged in! Redirecting…';
+          setTimeout(() => {
+            const ref = document.referrer;
+            if (ref && ref.includes(window.location.hostname) && !ref.includes('login') && !ref.includes('signup')) {
+              window.location.href = ref;
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 1000);
+        } else {
+          msg.className = 'auth-msg error';
+          msg.textContent = result.message || 'Invalid email or password.';
+        }
+      });
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

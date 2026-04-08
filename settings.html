@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <style>
+    .save-msg {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: var(--radius-md);
+      background: rgba(46, 139, 87, 0.1);
+      color: var(--primary-green);
+      text-align: center;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="settings-container">
+    <div class="settings-header">
+      <h1>Settings</h1>
+      <p>Configure your LyfBite experience.</p>
+    </div>
+
+    <section class="settings-group">
+      <h2>Appearance</h2>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h3>Theme</h3>
+          <p>Choose between light and dark mode.</p>
+        </div>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="themePref" value="light" id="theme-light"> Light
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="themePref" value="dark" id="theme-dark"> Dark
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-group">
+      <h2>Units</h2>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h3>System</h3>
+          <p>Switch between Metric (kg/ml) and Imperial (lb/oz) units.</p>
+        </div>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="unitPref" value="metric"> Metric
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="unitPref" value="imperial"> Imperial
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="settings-group">
+      <h2>Notifications</h2>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h3>Push Notifications</h3>
+          <p>Receive live order updates and driver messages.</p>
+        </div>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="notifPref" value="on"> On
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="notifPref" value="off"> Off
+          </label>
+        </div>
+      </div>
+      <div class="setting-item">
+        <div class="setting-info">
+          <h3>Email Reminders</h3>
+          <p>Get daily meal plan reminders and billing alerts.</p>
+        </div>
+        <div class="radio-group">
+          <label class="radio-card">
+            <input type="radio" name="emailPref" value="on"> On
+          </label>
+          <label class="radio-card">
+            <input type="radio" name="emailPref" value="off"> Off
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <div class="step-actions">
+      <button class="btn-primary" id="btn-save-settings">Save Changes</button>
+    </div>
+    <div id="save-msg" class="save-msg"></div>
+  </main>
+
+  <footer class="footer" id="main-footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Fuel your body. Simplify your life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize theme radio based on localStorage
+      const currentTheme = localStorage.getItem('theme') || 'light';
+      if (currentTheme === 'dark') {
+        document.getElementById('theme-dark').checked = true;
+      } else {
+        document.getElementById('theme-light').checked = true;
+      }
+
+      // Initialize units
+      const currentUnit = localStorage.getItem('lyfbite_units') || 'metric';
+      document.querySelector(`input[name="unitPref"][value="${currentUnit}"]`).checked = true;
+
+      // Initialize notifications
+      const currentNotif = localStorage.getItem('lyfbite_notifications') || 'on';
+      document.querySelector(`input[name="notifPref"][value="${currentNotif}"]`).checked = true;
+
+      const currentEmail = localStorage.getItem('lyfbite_email_reminders') || 'on';
+      document.querySelector(`input[name="emailPref"][value="${currentEmail}"]`).checked = true;
+
+      document.getElementById('btn-save-settings').addEventListener('click', () => {
+        // Save Theme
+        const selectedTheme = document.querySelector('input[name="themePref"]:checked').value;
+        if (selectedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          document.documentElement.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        }
+
+        // Save Units
+        const selectedUnit = document.querySelector('input[name="unitPref"]:checked').value;
+        localStorage.setItem('lyfbite_units', selectedUnit);
+        
+        // Save Notifications
+        const selectedNotif = document.querySelector('input[name="notifPref"]:checked').value;
+        localStorage.setItem('lyfbite_notifications', selectedNotif);
+
+        // Save Email Reminders
+        const selectedEmail = document.querySelector('input[name="emailPref"]:checked').value;
+        localStorage.setItem('lyfbite_email_reminders', selectedEmail);
+        
+        // Trigger immediate UI refresh for units
+        if (window.updateLyfBiteUnits) window.updateLyfBiteUnits();
+
+        const msg = document.getElementById('save-msg');
+        msg.textContent = "Settings saved successfully!";
+        msg.style.opacity = 1;
+
+        setTimeout(() => {
+          msg.style.opacity = 0;
+        }, 3000);
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

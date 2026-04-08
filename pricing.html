@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalization — LyfBite</title>
+  <meta http-equiv="refresh" content="0;url=personalization.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script>window.location.replace('personalization.html');</script>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content page-narrow">
+    <header class="page-header">
+      <p class="page-eyebrow">Meal prep personalization</p>
+      <h1>Personalize your plan, see your price</h1>
+      <p class="page-lead">Adjust meals, schedule, and your nutrition profile. Totals are shown in UAE Dirhams (Dhs) and update instantly.</p>
+    </header>
+
+    <div class="pricing-layout">
+      <div class="pricing-panel">
+        <section class="option-block">
+          <h2>Your profile (drives personalization)</h2>
+          <p class="option-hint">These inputs help tailor portions and ingredient handling. Price updates with your selections.</p>
+
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="height-cm">Height (cm)</label>
+              <input type="number" id="height-cm" name="height-cm" min="120" max="230" value="170" data-pricing-input>
+            </div>
+            <div class="input-group">
+              <label for="weight-kg">Weight (kg)</label>
+              <input type="number" id="weight-kg" name="weight-kg" min="35" max="200" value="70" data-pricing-input>
+            </div>
+          </div>
+
+          <div class="form-row two">
+            <div class="input-group">
+              <label for="caloric-goal">Daily caloric goal</label>
+              <input type="number" id="caloric-goal" name="caloric-goal" min="900" max="5000" value="2200" data-pricing-input>
+            </div>
+            <div class="input-group">
+              <label for="weight-goal">Goal</label>
+              <div class="radio-group" id="weight-goal">
+                <label class="radio-card"><input type="radio" name="weight-goal" value="loss" data-pricing-input> Weight loss</label>
+                <label class="radio-card"><input type="radio" name="weight-goal" value="maintenance" data-pricing-input checked> Maintain</label>
+                <label class="radio-card"><input type="radio" name="weight-goal" value="gain" data-pricing-input> Weight gain</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label>Spice rating</label>
+            <div class="slider-container">
+              <input type="range" id="spice-rating" name="spice-rating" min="0" max="5" step="1" value="2" data-pricing-input>
+              <span id="spice-display">2/5</span>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="allergens-input">Allergens (press Enter to add)</label>
+            <div class="tags-input-container">
+              <div id="allergens-tags" class="tags-container"></div>
+              <input type="text" id="allergens-input" placeholder="e.g. Peanuts, Gluten, Dairy">
+            </div>
+            <div class="option-hint" style="margin-top: 0.75rem;">We’ll price in allergy-safe handling for each allergen you add.</div>
+          </div>
+        </section>
+
+        <section class="option-block">
+          <h2>Meals per day</h2>
+          <p class="option-hint">How many chef-prepared meals you want each day.</p>
+          <div class="segmented" role="radiogroup" aria-label="Meals per day">
+            <label><input type="radio" name="meals-per-day" value="2" data-pricing-input> 2 meals</label>
+            <label><input type="radio" name="meals-per-day" value="3" checked data-pricing-input> 3 meals</label>
+            <label><input type="radio" name="meals-per-day" value="4" data-pricing-input> 4 meals</label>
+          </div>
+        </section>
+
+        <section class="option-block">
+          <h2>Days per week</h2>
+          <p class="option-hint">We prep for the full week or weekdays only.</p>
+          <div class="segmented" role="radiogroup" aria-label="Days per week">
+            <label><input type="radio" name="days-per-week" value="5" checked data-pricing-input> 5 days</label>
+            <label><input type="radio" name="days-per-week" value="6" data-pricing-input> 6 days</label>
+            <label><input type="radio" name="days-per-week" value="7" data-pricing-input> 7 days</label>
+          </div>
+        </section>
+
+        <section class="option-block">
+          <h2>Diet style</h2>
+          <p class="option-hint">Specialty menus may use premium ingredients.</p>
+          <div class="segmented stacked" role="radiogroup" aria-label="Diet style">
+            <label><input type="radio" name="diet-style" value="standard" checked data-pricing-input> Standard</label>
+            <label><input type="radio" name="diet-style" value="vegetarian" data-pricing-input> Vegetarian</label>
+            <label><input type="radio" name="diet-style" value="vegan" data-pricing-input> Vegan</label>
+            <label><input type="radio" name="diet-style" value="keto" data-pricing-input> Keto</label>
+            <label><input type="radio" name="diet-style" value="highprotein" data-pricing-input> High protein</label>
+          </div>
+        </section>
+
+        <section class="option-block">
+          <h2>Plan length</h2>
+          <p class="option-hint">Longer commitments unlock a lower weekly rate.</p>
+          <div class="segmented" role="radiogroup" aria-label="Plan duration">
+            <label><input type="radio" name="plan-duration" value="1" checked data-pricing-input> 1 week</label>
+            <label><input type="radio" name="plan-duration" value="2" data-pricing-input> 2 weeks</label>
+            <label><input type="radio" name="plan-duration" value="4" data-pricing-input> 4 weeks</label>
+          </div>
+        </section>
+
+        <section class="option-block">
+          <h2>Add-ons</h2>
+          <p class="option-hint">Toggle extras — prices fold into your weekly total.</p>
+          <div class="toggle-list">
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-title">Snack pack</div>
+                <div class="toggle-desc">Portioned snacks aligned to your calorie target.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="opt-snacks" data-pricing-input>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-title">Breakfast boost</div>
+                <div class="toggle-desc">Add a full breakfast line to your daily bag.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="opt-breakfast" data-pricing-input>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-title">Low sodium prep</div>
+                <div class="toggle-desc">Recipe adjustments for heart-health goals.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="opt-low-sodium" data-pricing-input>
+                <span class="slider"></span>
+              </label>
+            </div>
+            <div class="toggle-row">
+              <div>
+                <div class="toggle-title">Organic produce</div>
+                <div class="toggle-desc">Organic vegetables &amp; fruit where available.</div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="opt-organic" data-pricing-input>
+                <span class="slider"></span>
+              </label>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="pricing-summary" aria-live="polite">
+        <div class="summary-card">
+          <h2>Your estimate</h2>
+          <p class="summary-line">
+            <span>Meals per week</span>
+            <strong id="summary-meals">—</strong>
+          </p>
+          <p class="summary-line">
+            <span>Duration</span>
+            <strong id="summary-duration">—</strong>
+          </p>
+          <div class="summary-total">
+            <div class="summary-label">Weekly (after bundle discount)</div>
+            <div class="summary-amount" id="price-weekly">0 Dhs</div>
+          </div>
+          <div class="summary-period">
+            <div class="summary-label">Total for selected period</div>
+            <div class="summary-amount accent" id="price-period">0 Dhs</div>
+          </div>
+          <p class="summary-footnote">Average per meal (weekly plan): <strong id="price-per-meal">0 Dhs</strong></p>
+          <p class="summary-disclaimer">Estimates include standard chilled delivery in UAE metro areas. Final charge is confirmed at checkout.</p>
+          <a class="btn-cta summary-cta" href="billing.html">Continue to billing</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Fuel your body. Simplify your life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script src="personalization.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

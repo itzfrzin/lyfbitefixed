@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>ReferenceError: lifestyle is not defined<br> &nbsp; &nbsp;at file:///C:/Users/ASUS/Downloads/bytlife-main/server.js:164:22<br> &nbsp; &nbsp;at process.processTicksAndRejections (node:internal/process/task_queues:105:5)</pre>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+</body>
+</html>

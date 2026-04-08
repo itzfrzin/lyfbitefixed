@@ -1,0 +1,54 @@
+/* design-system.css */
+:root {
+  /* Core Palette (from business concept poster) */
+  --clr-pale-green: #B5C99A; /* Pale Green */
+  --clr-pastel-yellow: #FFF1D0; /* Pastel Yellow */
+  --clr-chartreuse: #E1E9B7; /* Light Chartreuse */
+  --clr-olive: #718355; /* Olive Green */
+  
+  /* Semantic Variables - Light Theme */
+  --ds-bg: #E0EFE5;
+  --ds-surface: rgba(255, 255, 255, 0.65);
+  --ds-text-primary: #1A1A1A; /* Deep charcoal */
+  --ds-text-secondary: #4A4A4A;
+  --ds-border: #E0E0E0;
+
+  --ds-primary: var(--clr-olive);
+  --ds-primary-light: var(--clr-pale-green);
+  --ds-accent: var(--clr-pastel-yellow);
+  --ds-accent-hover: #EBE0BB;
+}
+
+[data-theme="dark"] {
+  /* Semantic Variables - Dark Theme */
+  --ds-bg: #121212;
+  --ds-surface: #1E1E1E;
+  --ds-text-primary: #F0F0F0;
+  --ds-text-secondary: #B0B0B0;
+  --ds-border: #333333;
+
+  /* Adjusted colors for readability on dark */
+  --ds-primary: var(--clr-pale-green);
+  --ds-primary-light: var(--clr-olive);
+  --ds-accent: var(--clr-chartreuse);
+  --ds-accent-hover: #CCD5A1;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: transform 0.2s, background-color 0.2s;
+  color: var(--ds-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.theme-toggle:hover {
+  background-color: rgba(128, 128, 128, 0.1);
+  transform: scale(1.05);
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewards Dashboard — LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dash-box {
+      background: var(--ds-surface);
+      border: 1px solid var(--ds-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+    }
+    .points-display {
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: var(--ds-primary);
+      line-height: 1;
+      margin: 1.5rem 0;
+    }
+    .coupon-card {
+      background: var(--ds-bg);
+      border: 1px dashed var(--ds-primary-light);
+      padding: 1.25rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html" class="active">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <header class="page-header" style="margin-bottom: 3rem;">
+      <h1>Loyalty & Rewards</h1>
+      <p class="page-lead">Earn points automatically when your delivery subsciptions are active.</p>
+    </header>
+
+    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 2rem;">
+      <!-- Points Column -->
+      <div class="dash-box" style="text-align: center;">
+        <h2 style="color: var(--ds-text-primary);">Total Points</h2>
+        <div class="points-display" id="loyalty-points">0</div>
+        <p style="color: var(--ds-text-secondary); margin-bottom: 1.5rem;">1 point earned per $1 spent on food orders.</p>
+        <div style="background: rgba(128,128,128,0.1); padding: 1rem; border-radius: var(--radius-md); font-size: 0.9rem;">
+          <strong>Value:</strong> <span class="currency-replace">$0.00</span> towards your next order.
+        </div>
+        <button class="btn-primary" style="margin-top: 2rem; width: 100%;" id="redeem-btn" onclick="window.location.href='billing.html'">Redeem in Cart</button>
+      </div>
+
+      <!-- Coupons Column -->
+      <div class="dash-box">
+        <h2 style="color: var(--ds-text-primary); margin-bottom: 1.5rem;">Active Coupons</h2>
+        
+        <!-- FIRST30 Promo -->
+        <div class="coupon-card" style="border-color: var(--ds-primary); background: rgba(104,121,72,0.07);">
+          <div>
+            <div style="display:inline-block;background:var(--ds-primary);color:#fff;font-size:0.7rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:99px;margin-bottom:0.4rem;letter-spacing:0.05em;">🎉 NEW USER</div>
+            <h4 style="font-size:1.1rem;margin-bottom:0.25rem;color:var(--ds-primary);">30% Off Your First Order</h4>
+            <p style="font-size:0.85rem;color:var(--ds-text-secondary);">Use code <strong style="color:var(--ds-primary);font-family:monospace;font-size:1rem;letter-spacing:0.08em;">FIRST30</strong> at checkout for a flat 30% discount.</p>
+          </div>
+          <button onclick="navigator.clipboard.writeText('FIRST30').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Code',2000)})"
+            class="btn-primary" style="font-size:0.85rem; white-space:nowrap;">Copy Code</button>
+        </div>
+
+        <div class="coupon-card">
+          <div>
+            <div style="display:inline-block;background:#0ea5e9;color:#fff;font-size:0.7rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:99px;margin-bottom:0.4rem;">🚚 FREE DELIVERY</div>
+            <h4 style="font-size:1.1rem;margin-bottom:0.25rem;">Free Delivery</h4>
+            <p style="font-size:0.85rem;color:var(--ds-text-secondary);">Use code <strong style="font-family:monospace;letter-spacing:0.08em;">FREESHIP</strong> — waives delivery fee on any order.</p>
+          </div>
+          <button onclick="navigator.clipboard.writeText('FREESHIP').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Code',2000)})"
+            class="btn-primary" style="font-size:0.85rem; white-space:nowrap;">Copy Code</button>
+        </div>
+
+        <div class="coupon-card">
+          <div>
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">Free Snack Pack</h4>
+            <p style="font-size: 0.85rem; color: var(--ds-text-secondary);">Use code <strong style="font-family:monospace;letter-spacing:0.08em;">SNACKFREE</strong> — on orders over $55. Adds $5 snack credit.</p>
+          </div>
+          <button onclick="navigator.clipboard.writeText('SNACKFREE').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Code',2000)})"
+            class="btn-primary" style="font-size: 0.85rem; white-space:nowrap;">Copy Code</button>
+        </div>
+
+        <div class="coupon-card" id="plus15-coupon" style="display:none; border-color:#D4AF37; background:linear-gradient(135deg,rgba(212,175,55,0.08),var(--ds-bg));">
+          <div>
+            <div style="display:inline-block;background:linear-gradient(135deg,#D4AF37,#B8860B);color:#fff;font-size:0.7rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:99px;margin-bottom:0.4rem;">✦ PLUS EXCLUSIVE</div>
+            <h4 style="font-size:1.1rem;margin-bottom:0.25rem;color:#B8860B;">Plus Member 15% Off</h4>
+            <p style="font-size:0.85rem;color:var(--ds-text-secondary);">Use code <strong style="color:#B8860B;font-family:monospace;font-size:1rem;letter-spacing:0.08em;">PLUS15</strong> — your LyfBite Plus member perk.</p>
+          </div>
+          <button onclick="navigator.clipboard.writeText('PLUS15').then(()=>{this.textContent='Copied!';setTimeout(()=>this.textContent='Copy Code',2000)})"
+            class="btn-primary" style="font-size:0.85rem;white-space:nowrap;background:linear-gradient(135deg,#D4AF37,#B8860B);">Copy Code</button>
+        </div>
+
+        <!-- LyfBite Plus Upgrade Coupon (visible to non-Plus users only when logged in) -->
+        <div class="coupon-card" id="plus-upgrade-coupon" style="display:none; border-color:#a78bfa; background:linear-gradient(135deg,rgba(167,139,250,0.08),var(--ds-bg));">
+          <div>
+            <div style="display:inline-block;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-size:0.7rem;font-weight:700;padding:0.15rem 0.5rem;border-radius:99px;margin-bottom:0.4rem;">⭐ UPGRADE OFFER</div>
+            <h4 style="font-size:1.1rem;margin-bottom:0.25rem;color:#7c3aed;">Join LyfBite Plus & Save</h4>
+
+          </div>
+          <button onclick="window.location.href='plus.html'"
+            class="btn-primary" style="font-size:0.85rem;white-space:nowrap;background:linear-gradient(135deg,#7c3aed,#a78bfa);">Upgrade</button>
+        </div>
+
+        <div class="coupon-card">
+          <div>
+            <h4 style="font-size: 1.1rem; margin-bottom: 0.25rem;">Refer a Friend!</h4>
+            <p style="font-size: 0.85rem; color: var(--ds-text-secondary);">Get $14 when they subscribe.</p>
+          </div>
+          <button class="btn-secondary" style="font-size: 0.85rem; border-color: var(--ds-primary); color: var(--ds-primary);">Share Link</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Bite into a healthier life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pointsEl = document.getElementById('loyalty-points');
+      const valueEl  = document.querySelector('.dash-box span.currency-replace');
+      const redeemBtn = document.getElementById('redeem-btn');
+
+      // Get per-user points key (1 point = $1 spent on food)
+      let sessionUser = null;
+      try { sessionUser = JSON.parse(localStorage.getItem('lyfbite_session') || 'null'); } catch {}
+
+      // Points strictly 0 for non-logged-in users
+      let points = 0;
+      if (sessionUser) {
+        const ptsKey = 'lyfbite_points_' + (sessionUser.id || sessionUser.email);
+        points = parseInt(localStorage.getItem(ptsKey) || '0');
+      }
+
+      if (pointsEl) pointsEl.textContent = points.toLocaleString();
+
+      // Value: every 100 points = $10 off
+      if (valueEl) {
+        const usdValue = ((points / 100) * 10).toFixed(2);
+        valueEl.textContent = `$${usdValue}`;
+      }
+
+      // Hide redeem button for guests
+      if (!sessionUser && redeemBtn) {
+        redeemBtn.style.display = 'none';
+      }
+
+      // Show PLUS15 coupon for all Plus members (monthly + yearly)
+      if (sessionUser && (sessionUser.isYearlySubscriber || sessionUser.isMonthlySubscriber)) {
+        const plus15 = document.getElementById('plus15-coupon');
+        if (plus15) plus15.style.display = 'flex';
+        // Hide the upgrade coupon for existing Plus members
+        const upgradeCard = document.getElementById('plus-upgrade-coupon');
+        if (upgradeCard) upgradeCard.style.display = 'none';
+      } else if (sessionUser) {
+        // Show upgrade coupon only for logged-in non-Plus users
+        const upgradeCard = document.getElementById('plus-upgrade-coupon');
+        if (upgradeCard) upgradeCard.style.display = 'flex';
+      }
+
+      // Show "earn points" info if 0 points
+      if (points === 0 && pointsEl) {
+        const hint = document.createElement('p');
+        hint.style.cssText = 'font-size:0.82rem;color:var(--ds-text-secondary);margin-top:0.5rem;';
+        hint.textContent = 'Place your first order to start earning points!';
+        pointsEl.after(hint);
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

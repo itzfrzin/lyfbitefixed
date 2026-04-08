@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .auth-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, var(--ds-bg) 0%, var(--ds-surface) 100%);
+    }
+    .auth-wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 1000px;
+      min-height: 580px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    }
+    .auth-panel-left {
+      flex: 1;
+      background: linear-gradient(145deg, var(--ds-primary) 0%, #4a6230 100%);
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .auth-panel-left::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.07);
+    }
+    .auth-panel-left::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -60px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+    }
+    .auth-panel-left h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+    .auth-panel-left p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+    .auth-perk {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+      opacity: 0.92;
+    }
+    .auth-perk-icon {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .auth-panel-right {
+      flex: 1;
+      background: var(--ds-surface);
+      padding: 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .auth-logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--ds-text-primary);
+      margin-bottom: 2rem;
+      text-decoration: none;
+      display: block;
+    }
+    .auth-logo span { color: var(--ds-primary); }
+    .auth-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--ds-text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .auth-subtitle {
+      color: var(--ds-text-secondary);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+    .auth-subtitle a {
+      color: var(--ds-primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .auth-form .field-row {
+      display: flex;
+      gap: 1rem;
+    }
+    .auth-form .field-group {
+      flex: 1;
+      margin-bottom: 1.2rem;
+    }
+    .auth-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ds-text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .auth-form input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid var(--ds-border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: 'Inter', sans-serif;
+      background: var(--ds-bg);
+      color: var(--ds-text-primary);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .auth-form input:focus {
+      border-color: var(--ds-primary);
+      box-shadow: 0 0 0 3px rgba(113, 131, 85, 0.15);
+    }
+    .auth-form input.error {
+      border-color: #e53e3e;
+    }
+    .field-error {
+      font-size: 0.78rem;
+      color: #e53e3e;
+      margin-top: 0.3rem;
+      display: none;
+    }
+    .field-error.visible { display: block; }
+    .btn-auth {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--ds-primary), #5a7040);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .btn-auth:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(113,131,85,0.35);
+    }
+    .btn-auth:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+      color: var(--ds-text-secondary);
+      font-size: 0.85rem;
+    }
+    .auth-divider::before, .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--ds-border);
+    }
+    .auth-msg {
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .auth-msg.success {
+      background: #f0fdf4;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      display: block;
+    }
+    .auth-msg.error {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+      display: block;
+    }
+    [data-theme="dark"] .auth-msg.success {
+      background: rgba(22,101,52,0.2);
+      color: #86efac;
+      border-color: rgba(134,239,172,0.3);
+    }
+    [data-theme="dark"] .auth-msg.error {
+      background: rgba(153,27,27,0.2);
+      color: #fca5a5;
+      border-color: rgba(252,165,165,0.3);
+    }
+    .spinner-sm {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,0.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .password-wrapper {
+      position: relative;
+      display: block;
+    }
+    .password-wrapper input {
+      padding-right: 2.8rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .toggle-pw,
+    .toggle-pw2 {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--ds-text-secondary);
+      font-size: 1rem;
+      padding: 0;
+      line-height: 1;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+    }
+    .toggle-pw:hover,
+    .toggle-pw2:hover { color: var(--ds-primary); }
+    @media (max-width: 700px) {
+      .auth-panel-left { display: none; }
+      .auth-wrapper { border-radius: 16px; }
+      .auth-form .field-row { flex-direction: column; gap: 0; }
+    }
+  </style>
+</head>
+<body class="auth-page">
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links" style="gap:1rem;">
+        <a href="index.html" style="color:var(--ds-text-secondary);font-weight:500;text-decoration:none;">← Back to Home</a>
+        <a href="login.html" style="color:var(--ds-primary);font-weight:600;text-decoration:none;">Log In</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="auth-main">
+    <div class="auth-wrapper">
+      <!-- Left decorative panel -->
+      <div class="auth-panel-left">
+        <h2>Join LyfBite Today 🌱</h2>
+        <p>Your personalised nutrition journey starts here. Create your free account and unlock AI-powered meal planning.</p>
+        <div class="auth-perk">
+          <div class="auth-perk-icon">🎯</div>
+          <span>AI meal plans tailored to your body & goals</span>
+        </div>
+        <div class="auth-perk">
+          <div class="auth-perk-icon">🥗</div>
+          <span>Allergy-safe recipes, always</span>
+        </div>
+        <div class="auth-perk">
+          <div class="auth-perk-icon">📊</div>
+          <span>Track calories, macros & progress</span>
+        </div>
+        <div class="auth-perk">
+          <div class="auth-perk-icon">⭐</div>
+          <span>Upgrade to LyfBite Plus for VIP benefits</span>
+        </div>
+      </div>
+
+      <!-- Right form panel -->
+      <div class="auth-panel-right">
+        <a href="index.html" class="auth-logo">Lyf<span>Bite</span></a>
+        <h1 class="auth-title">Create Account</h1>
+        <p class="auth-subtitle">Already have an account? <a href="login.html">Log in</a></p>
+
+        <div class="auth-msg" id="auth-msg"></div>
+
+        <form class="auth-form" id="signup-form" novalidate>
+          <div class="field-row">
+            <div class="field-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" placeholder="Sara" autocomplete="given-name">
+              <div class="field-error" id="err-firstName">Please enter your first name.</div>
+            </div>
+            <div class="field-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" placeholder="Al-Mansoori" autocomplete="family-name">
+              <div class="field-error" id="err-lastName">Please enter your last name.</div>
+            </div>
+          </div>
+          <div class="field-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="sara@example.com" autocomplete="email">
+            <div class="field-error" id="err-email">Please enter a valid email.</div>
+          </div>
+          <div class="field-group">
+            <label for="password">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="password" placeholder="Minimum 8 characters" autocomplete="new-password">
+              <button type="button" class="toggle-pw" id="toggle-pw">👁</button>
+            </div>
+            <div class="field-error" id="err-password">Password must be at least 8 characters.</div>
+          </div>
+          <div class="field-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="confirmPassword" placeholder="Repeat your password" autocomplete="new-password">
+              <button type="button" class="toggle-pw2" id="toggle-pw2">👁</button>
+            </div>
+            <div class="field-error" id="err-confirmPassword">Passwords do not match.</div>
+          </div>
+          <button type="submit" class="btn-auth" id="signup-btn">
+            <span id="btn-text">Create My Account</span>
+            <div class="spinner-sm" id="btn-spinner"></div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Redirect if already logged in
+      const user = lyfbiteAuth.getUser();
+      if (user) { window.location.href = 'index.html'; return; }
+
+      const form = document.getElementById('signup-form');
+      const msg = document.getElementById('auth-msg');
+
+      // Password toggles
+      document.getElementById('toggle-pw').addEventListener('click', () => {
+        const pw = document.getElementById('password');
+        pw.type = pw.type === 'password' ? 'text' : 'password';
+      });
+      document.getElementById('toggle-pw2').addEventListener('click', () => {
+        const pw = document.getElementById('confirmPassword');
+        pw.type = pw.type === 'password' ? 'text' : 'password';
+      });
+
+      function showError(id, show) {
+        const el = document.getElementById('err-' + id);
+        const inp = document.getElementById(id);
+        if (el) el.classList.toggle('visible', show);
+        if (inp) inp.classList.toggle('error', show);
+      }
+
+      function validate() {
+        let valid = true;
+        const fn = document.getElementById('firstName').value.trim();
+        const ln = document.getElementById('lastName').value.trim();
+        const em = document.getElementById('email').value.trim();
+        const pw = document.getElementById('password').value;
+        const cpw = document.getElementById('confirmPassword').value;
+
+        if (!fn) { showError('firstName', true); valid = false; } else showError('firstName', false);
+        if (!ln) { showError('lastName', true); valid = false; } else showError('lastName', false);
+        if (!em || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showError('email', true); valid = false; } else showError('email', false);
+        if (pw.length < 8) { showError('password', true); valid = false; } else showError('password', false);
+        if (pw !== cpw) { showError('confirmPassword', true); valid = false; } else showError('confirmPassword', false);
+        return valid;
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        msg.className = 'auth-msg';
+        msg.style.display = 'none';
+        if (!validate()) return;
+
+        const btn = document.getElementById('signup-btn');
+        const btnText = document.getElementById('btn-text');
+        const spinner = document.getElementById('btn-spinner');
+        btn.disabled = true;
+        btnText.textContent = 'Creating account…';
+        spinner.style.display = 'block';
+
+        const result = await lyfbiteAuth.signup({
+          firstName: document.getElementById('firstName').value.trim(),
+          lastName: document.getElementById('lastName').value.trim(),
+          email: document.getElementById('email').value.trim(),
+          password: document.getElementById('password').value
+        });
+
+        spinner.style.display = 'none';
+        btn.disabled = false;
+        btnText.textContent = 'Create My Account';
+
+        if (result.success) {
+          msg.className = 'auth-msg success';
+          msg.textContent = '🎉 Account created! Redirecting…';
+          setTimeout(() => {
+            // Go back to where they came from (e.g. plus.html after adding to cart)
+            const pending = localStorage.getItem('lyfbite_pending_plan');
+            const ref = document.referrer;
+            if (pending) {
+              localStorage.removeItem('lyfbite_pending_plan');
+              window.location.href = 'plus.html';
+            } else if (ref && ref.includes(window.location.hostname) && !ref.includes('signup') && !ref.includes('login')) {
+              window.location.href = ref;
+            } else {
+              window.location.href = 'index.html';
+            }
+          }, 1200);
+        } else {
+          msg.className = 'auth-msg error';
+          msg.textContent = result.message || 'Something went wrong. Please try again.';
+        }
+      });
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

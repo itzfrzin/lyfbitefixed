@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LyfBite Plus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .plus-hero {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, var(--ds-primary) 0%, var(--ds-primary-light) 100%);
+      color: white;
+      border-radius: var(--radius-lg);
+      margin-bottom: 4rem;
+      box-shadow: var(--shadow-lg);
+    }
+    .plus-card {
+      background: var(--ds-surface);
+      border: 1px solid var(--ds-border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      text-align: center;
+      transition: transform 0.3s;
+      box-shadow: var(--shadow-md);
+    }
+    .plus-card:hover { transform: translateY(-5px); border-color: var(--ds-accent); }
+    .plus-icon { font-size: 3.5rem; margin-bottom: 1.5rem; text-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html" class="active">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <div class="plus-hero">
+      <h1 style="font-size: 3.5rem; margin-bottom: 1rem; color: white;">LyfBite <span style="color: var(--ds-accent);">Plus</span></h1>
+      <p style="font-size: 1.25rem; max-width: 600px; margin: 0 auto; opacity: 0.95;">The ultimate VIP experience for your health. Unlock premium benefits, exclusive meals, and priority service.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; margin-bottom: 4rem;">
+      <div class="plus-card">
+        <div class="plus-icon">🚀</div>
+        <h3 style="margin-bottom: 1rem; color: var(--ds-text-primary);">Priority Delivery</h3>
+        <p style="color: var(--ds-text-secondary);">Jump the queue. Plus members always get their meals delivered precisely during their chosen 30-minute window.</p>
+      </div>
+      <div class="plus-card">
+        <div class="plus-icon">💸</div>
+        <h3 style="margin-bottom: 1rem; color: var(--ds-text-primary);">Free Delivery Forever</h3>
+        <p style="color: var(--ds-text-secondary);">Never pay a delivery fee again. Save automatically on every weekly subscription order.</p>
+      </div>
+      <div class="plus-card">
+        <div class="plus-icon">✨</div>
+        <h3 style="margin-bottom: 1rem; color: var(--ds-text-primary);">Exclusive Ingredients</h3>
+        <p style="color: var(--ds-text-secondary);">Access to premium, rare superfoods and top-tier organic proteins reserved just for Plus menus.</p>
+      </div>
+      <div class="plus-card">
+        <div class="plus-icon">👨‍🍳</div>
+        <h3 style="margin-bottom: 1rem; color: var(--ds-text-primary);">Chef Consultations</h3>
+        <p style="color: var(--ds-text-secondary);">Monthly 1-on-1 text sessions with our head nutritional chefs to refine your menu strategy.</p>
+      </div>
+      <div class="plus-card">
+        <div class="plus-icon">🎁</div>
+        <h3 style="margin-bottom: 1rem; color: var(--ds-text-primary);">Weekly Surprise Treats</h3>
+        <p style="color: var(--ds-text-secondary);">Every box includes a complimentary high-protein snack or detox juice not available to standard members.</p>
+      </div>
+      <div class="plus-card">
+        <div class="plus-icon">📊</div>
+        <h3 style="margin-bottom: 1rem; color: var(--ds-text-primary);">Advanced Analytics</h3>
+        <p style="color: var(--ds-text-secondary);">Deep-dive biological insights into your macro trends and nutritional optimization over time.</p>
+      </div>
+    </div>
+    
+    <div style="max-width: 900px; margin: 0 auto; text-align: center; background: var(--ds-surface); border: 1px solid var(--ds-accent); padding: 4rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg);">
+      <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--ds-text-primary);">Ready to Upgrade?</h2>
+      <p style="font-size: 1.1rem; color: var(--ds-text-secondary); margin-bottom: 3rem;">Choose the plan that fits your lifestyle. Cancel anytime.</p>
+      
+      <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
+        <!-- Monthly Card -->
+        <div style="flex: 1; min-width: 280px; padding: 2.5rem; border: 1px solid var(--ds-border); border-radius: var(--radius-md); background: var(--ds-bg);">
+          <h3 style="margin-bottom: 1rem;">Monthly</h3>
+          <div style="font-size: 3rem; font-weight: 700; color: var(--ds-primary); margin-bottom: 1rem;">$15<span style="font-size: 1rem; color: var(--ds-text-secondary);">/mo</span></div>
+          <button class="btn-primary upgrade-action" data-price="15" data-type="Monthly" style="width: 100%;">Select Monthly</button>
+        </div>
+        
+        <!-- Yearly Card -->
+        <div style="flex: 1; min-width: 280px; padding: 2.5rem; border: 2px solid var(--ds-accent); border-radius: var(--radius-md); background: var(--ds-bg); position: relative;">
+          <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--ds-accent); color: #1a2e05; padding: 0.25rem 1rem; border-radius: 99px; font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(0,0,0,0.2);">Super Saver</div>
+          <h3 style="margin-bottom: 1rem;">Yearly</h3>
+          <div style="font-size: 3rem; font-weight: 700; color: var(--ds-primary); margin-bottom: 1rem;">$99<span style="font-size: 1rem; color: var(--ds-text-secondary);">/yr</span></div>
+          <button class="btn-cta upgrade-action" data-price="99" data-type="Yearly" style="width: 100%;">Select Yearly</button>
+        </div>
+      </div>
+      
+      <p id="upgrade-msg" style="color: var(--ds-primary); font-weight: 600; margin-top: 1rem; opacity: 0; transition: opacity 0.3s;">LyfBite Plus added to cart!</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Bite into a healthier life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+
+      // ── Hide Plus page for existing yearly subscribers ──────────────────
+      const user = lyfbiteAuth.getUser();
+      if (user && (user.isYearlySubscriber || user.isMonthlySubscriber)) {
+        // Replace the upgrade section with a "you're already subscribed" banner
+        const main = document.querySelector('main.main-content');
+        if (main) {
+          const upgradeSection = main.querySelector('[style*="max-width: 900px"]');
+          if (upgradeSection) {
+            upgradeSection.innerHTML = `
+              <div style="text-align:center; padding:3rem 2rem;">
+                <div style="font-size:3.5rem; margin-bottom:1rem;">✦</div>
+                <h2 style="font-size:2rem; color:var(--ds-text-primary); margin-bottom:0.75rem;">
+                  You're already a <span style="color:#D4AF37;">LyfBite Plus</span> member!
+                </h2>
+                <p style="color:var(--ds-text-secondary); font-size:1.05rem; margin-bottom:2rem;">
+                  Your yearly subscription is active. Enjoy free delivery, exclusive meals, and all Plus benefits.
+                </p>
+                <a href="personalization.html" style="display:inline-block; padding:0.85rem 2.5rem; background:linear-gradient(135deg,var(--ds-primary),#5a7040); color:white; border-radius:12px; font-weight:700; text-decoration:none; font-size:1rem;">
+                  Go to My Meal Plan →
+                </a>
+              </div>
+            `;
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const actions = document.querySelectorAll('.upgrade-action');
+      const msg = document.getElementById('upgrade-msg');
+
+      actions.forEach(btn => {
+        btn.addEventListener('click', async () => {
+          // Check if user is logged in
+          const user = lyfbiteAuth.getUser();
+          if (!user) {
+            // Save intended plan and redirect to signup
+            localStorage.setItem('lyfbite_pending_plan', btn.dataset.type);
+            window.location.href = 'signup.html';
+            return;
+          }
+
+          let cart = [];
+          try {
+            const stored = localStorage.getItem('lyfbite_cart');
+            if (stored) cart = JSON.parse(stored);
+          } catch(e) {}
+
+          const price = parseInt(btn.dataset.price);
+          const type = btn.dataset.type;
+
+          const plusPackage = {
+            id: 'lyfbite_plus',
+            name: `LyfBite Plus (${type})`,
+            price: price,
+            quantity: 1,
+            type: 'subscription'
+          };
+
+          // Remove any existing Plus subscription first
+          cart = cart.filter(item => item.id !== 'lyfbite_plus');
+          cart.push(plusPackage);
+          localStorage.setItem('lyfbite_cart', JSON.stringify(cart));
+
+          // Badge granted ONLY after successful payment in billing.js — not on add to cart
+          msg.style.opacity = 1;
+          msg.style.color = 'var(--ds-primary)';
+          msg.textContent = `LyfBite Plus ${type} added to cart! Complete checkout to activate.`;
+
+          btn.innerHTML = 'Added! ✓';
+          
+          setTimeout(() => {
+            window.location.href = 'billing.html';
+          }, 1600);
+        });
+      });
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - LyfBite</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="design-system.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">Lyf<span>Bite</span></a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="personalization.html">Personalize</a>
+        <a href="tracker.html">Tracker</a>
+        <a href="plus.html">LyfBite Plus</a>
+        <a href="rewards.html">Rewards</a>
+        <a href="orders.html">My Orders</a>
+        <a href="billing.html" class="nav-cart" title="Cart">🛒</a>
+        <a href="settings.html" class="nav-settings" title="Settings">⚙️</a>
+                <a href="login.html" class="nav-profile-icon" id="nav-profile-icon" title="Account" style="text-decoration:none;">
+          <span class="profile-avatar" id="profile-avatar">👤</span>
+          <span class="gold-plus" id="gold-plus-badge" style="display:none;">✦</span>
+        </a>
+        <button id="nav-logout-btn" class="nav-logout-btn" title="Log Out" style="display:none;">🚪 Logout</button>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌓</button>
+      </div>
+    </div>
+  </nav>
+
+  <main style="max-width: 800px; margin: 4rem auto; padding: 2rem;">
+    <h1 style="color: var(--ds-primary); margin-bottom: 2rem;">Privacy Policy</h1>
+    <p style="color: var(--ds-text-secondary); line-height: 1.6; margin-bottom: 1rem;"><strong>Effective Date:</strong> March 26, 2026</p>
+    
+    <div style="color: var(--ds-text-primary); line-height: 1.8;">
+      <p>Your privacy is important to us. It is LyfBite's policy to respect your privacy regarding any information we may collect from you across our website, and other sites we own and operate.</p>
+      
+      <h3 style="margin-top: 2rem;">1. Information We Collect</h3>
+      <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. It includes basic profile details like age, weight, health conditions, and dietary preferences which are used exclusively by our AI to compute your daily caloric needs and suggest meals.</p>
+      
+      <h3 style="margin-top: 2rem;">2. How We Use Your Data</h3>
+      <p>We securely process your fitness goals and allergies solely for the purpose of personalizing your experience. LyfBite integrates with the Google Gemini API to analyze raw metabolic requirements; however, we do not share personally identifiable information with third-party LLM providers.</p>
+      
+      <h3 style="margin-top: 2rem;">3. Data Security</h3>
+      <p>We don't share any personally identifying information publicly or with third-parties, except when required to by law. We protect your data within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use or modification.</p>
+
+      <h3 style="margin-top: 2rem;">4. Your Rights</h3>
+      <p>You are free to refuse our request for your personal information, with the understanding that we may be unable to provide you with some of your desired services. Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information.</p>
+    </div>
+  </main>
+
+  <footer class="footer" id="main-footer">
+    <div class="footer-content">
+      <div class="footer-logo">Lyf<span>Bite</span></div>
+      <p>Fuel your body. Simplify your life.</p>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="delivery.html">Delivery Policy</a>
+      </div>
+      <p class="copyright">&copy; 2026 LyfBite Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="common.js"></script>
+  <script src="auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lyfbiteAuth.updateNavProfile();
+      const logoutBtn = document.getElementById('nav-logout-btn');
+      if (logoutBtn) logoutBtn.addEventListener('click', () => lyfbiteAuth.logout());
+    });
+  </script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
