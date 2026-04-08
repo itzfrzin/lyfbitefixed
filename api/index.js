@@ -66,6 +66,19 @@ connectMongo();
 
 // Simple in-memory fallback store (when MongoDB is offline)
 const memUsers = new Map();
+const fallbackAdminEmail = process.env.ADMIN_EMAIL || "admin@lyfbite.com";
+const fallbackAdminPassword = process.env.ADMIN_PASSWORD || "Admin@LyfBite2026";
+memUsers.set(fallbackAdminEmail, {
+  id: "mem_admin",
+  firstName: "Admin",
+  lastName: "LyfBite",
+  email: fallbackAdminEmail,
+  password: simpleHash(fallbackAdminPassword),
+  isYearlySubscriber: false,
+  isMonthlySubscriber: false,
+  isAdmin: true,
+  createdAt: new Date()
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
