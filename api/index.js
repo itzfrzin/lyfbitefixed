@@ -4,6 +4,9 @@ import { fileURLToPath } from "url";
 import "dotenv/config";
 import { GoogleGenAI, Type } from "@google/genai";
 
+console.log("🚀 SERVER STARTING... Time:", new Date().toISOString());
+console.log("🔍 DB CHECK: MONGODB_URI is", process.env.MONGODB_URI ? "LOADED" : "MISSING");
+
 // ── MongoDB Setup ─────────────────────────────────────────────────────────────
 let db = null;
 let usersCollection = null;
@@ -17,6 +20,7 @@ function simpleHash(str) {
 }
 
 async function connectMongo() {
+  console.log("⏳ Attempting to connect to MongoDB...");
   try {
     const { MongoClient } = await import("mongodb");
     const uri = process.env.MONGODB_URI || "mongodb://localhost:27017";
@@ -51,7 +55,7 @@ async function seedAdminAccount() {
   const adminPassword = process.env.ADMIN_PASSWORD || "Admin@LyfBite2026";
   const existing = await usersCollection.findOne({ email: adminEmail });
   if (existing) return;
-  
+
   await usersCollection.insertOne({
     firstName: "Admin",
     lastName: "LyfBite",
@@ -475,7 +479,7 @@ function generateAlgorithmicMeals(profile, health, count = 3) {
     const price = parseFloat(((basePrices[pName] || 12) + (Math.random() * 2 - 1)).toFixed(2));
 
     let instruction = `${aName} the ${pName.toLowerCase()} with ${bName.toLowerCase()} and season to taste.`;
-    
+
     meals.push({
       mealName: `${goalPrefix} ${pName} & ${bName} ${sName}`,
       instructions: instruction,
@@ -508,13 +512,15 @@ Return ONLY valid raw JSON (no markdown, no code fences). Format:
     res.json({ items: [meal] });
   } catch (error) {
     const fallbackMeals = generateAlgorithmicMeals({ goal: 'fit' }, { diet: diet || 'Any', allergies: intolerances || 'None' }, 1);
-    res.json({ items: [{
-      name: fallbackMeals[0].mealName,
-      image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop",
-      instructions: fallbackMeals[0].instructions,
-      prepTime: fallbackMeals[0].prepTime,
-      calories: fallbackMeals[0].macros.calories
-    }] });
+    res.json({
+      items: [{
+        name: fallbackMeals[0].mealName,
+        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop",
+        instructions: fallbackMeals[0].instructions,
+        prepTime: fallbackMeals[0].prepTime,
+        calories: fallbackMeals[0].macros.calories
+      }]
+    });
   }
 });
 
