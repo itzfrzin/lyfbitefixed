@@ -343,7 +343,7 @@ JSON format:
 }`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-lite",
+      model: "gemini-3-flash-preview",
       contents: prompt
     });
 
@@ -369,16 +369,8 @@ JSON format:
 
     res.json(mealPlan);
   } catch (error) {
-    console.error("❌ ERROR:", error.message);
-    const debugMeal = {
-      mealName: "⚠️ Debug Detail (Vercel Test)",
-      instructions: "Error: " + error.message,
-      prepTime: 0,
-      price: 0,
-      macros: { calories: 0, protein: 0, carbs: 0, fats: 0 }
-    };
-    const fallbacks = generateAlgorithmicMeals(profile, health, mealCount - 1);
-    res.json({ meals: [debugMeal, ...fallbacks] });
+    console.warn("⚠️ Gemini API encountered an error (e.g. 503 High Demand). Silently falling back to algorithmic generation.");
+    res.json({ meals: generateAlgorithmicMeals(profile, health, mealCount) });
   }
 });
 
@@ -465,7 +457,7 @@ Return ONLY valid raw JSON (no markdown, no code fences). Format:
 {"name":"Recipe Name","image":"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600","instructions":"Brief 1-2 sentence recipe overview.","prepTime":20,"calories":450}`;
 
     const response = await ai.models.generateContent({
-      model: "gemini-3.1-flash-lite",
+      model: "gemini-3-flash-preview",
       contents: prompt
     });
 
